@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import './App.css';
 import './normal.css';
 
@@ -23,8 +23,12 @@ function App() {
   ])
   function getEngines()
   {
-    fetch("http://localhost:3080/models").then(res=res.json()).then(data =>setModels(data.models.data));
-    
+    fetch("http://localhost:3080/models").then(res=>res.json()).then(data =>
+    {
+       console.log(data.models.data);
+      setModels(data.models.data);
+    }
+    )
   }
   function clearChat() {
     setChatLog([]);
@@ -35,7 +39,7 @@ function App() {
     let chatLogNew =[...chatLog,{user:'me',message: `${input}`}];
       setInput("");
       setChatLog(chatLogNew);
-       const messages= chatLogNew.map((message)=>message.message).join("\n")
+       const messages= chatLogNew.map((message)=>(message.message)).join("\n")
        const  response = await fetch("http://localhost:3080",{
       method:"POST",
       headers:{
@@ -58,6 +62,15 @@ function App() {
        <div className="side-menu-button" onClick={clearChat}>
         <span>+</span>
         New Chat
+       </div>
+       <div className="models">
+        <select>
+          {models?.map((model,index) =>{
+            <option key={model.id} value={model.id}>
+             {model.id}
+            </option>
+          })}
+        </select>
        </div>
       </aside>
       <section className="chat-box">
