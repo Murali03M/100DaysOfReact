@@ -63,7 +63,7 @@ function App() {
         <span>+</span>
         New Chat
        </div>
-       <div className="models">
+       {/* <div className="models">
         <select>
           {models?.map((model,index) =>{
             <option key={model.id} value={model.id}>
@@ -71,7 +71,7 @@ function App() {
             </option>
           })}
         </select>
-       </div>
+       </div> */}
       </aside>
       <section className="chat-box">
          <div className="chat-log">
