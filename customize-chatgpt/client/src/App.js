@@ -1,35 +1,12 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import './App.css';
 import './normal.css';
 
 function App() {
 
-  useEffect(() => {
-      getEngines()
-  }, [])
-
   const[input , setInput] = useState("");
-  const[models,setModels] =useState([])
-  const [chatLog, setChatLog] = useState([
-    {
-      user:"gpt",
-      message:"How can i help you today?"
-    }
-    // {
-    //   user:"me",
-    //   message:"sunny day"
-    // }
-
-  ])
-  function getEngines()
-  {
-    fetch("http://localhost:3080/models").then(res=>res.json()).then(data =>
-    {
-       console.log(data.models.data);
-      setModels(data.models.data);
-    }
-    )
-  }
+  const [chatLog, setChatLog] = useState([])
+  
   function clearChat() {
     setChatLog([]);
     
@@ -39,7 +16,7 @@ function App() {
     let chatLogNew =[...chatLog,{user:'me',message: `${input}`}];
       setInput("");
       setChatLog(chatLogNew);
-       const messages= chatLogNew.map((message)=>(message.message)).join("\n")
+       const messages= chatLogNew.map((message)=>message.message).join("\n")
        const  response = await fetch("http://localhost:3080",{
       method:"POST",
       headers:{
@@ -63,15 +40,6 @@ function App() {
         <span>+</span>
         New Chat
        </div>
-       {/* <div className="models">
-        <select>
-          {models?.map((model,index) =>{
-            <option key={model.id} value={model.id}>
-             {model.id}
-            </option>
-          })}
-        </select>
-       </div> */}
       </aside>
       <section className="chat-box">
          <div className="chat-log">
