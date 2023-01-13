@@ -11,7 +11,7 @@ class Counter extends Component {
             </span>
           </div>
           <div className="">
-            <button
+            <button 
               className="btn btn-primary"
               onClick={() => this.props.onIncrement(this.props.counter)}
             >
