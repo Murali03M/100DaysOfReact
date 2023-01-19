@@ -12,7 +12,7 @@ function App() {
     if(category == 'all')
     {
       setMenuItems(items)
-      return
+      return;
     }
     const newItems = items.filter((item) => item.category === category);
     setMenuItems(newItems);
