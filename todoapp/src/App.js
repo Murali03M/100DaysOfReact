@@ -27,6 +27,7 @@ function App() {
 
  }
 
+
   const addTodo =(text)=>
   {
     const newTodo ={
@@ -39,6 +40,9 @@ function App() {
   }
   return ( 
     <div className="App">
+      <div>
+        
+      </div>
     <TodoForm addTodo={addTodo}/>
     <TodoList todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo}/>
     </div>
