@@ -38,10 +38,11 @@ function App() {
     setTodos([...todos , newTodo])
     console.log(newTodo);
   }
+  
   return ( 
     <div className="App">
       <div>
-        
+
       </div>
     <TodoForm addTodo={addTodo}/>
     <TodoList todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo}/>
